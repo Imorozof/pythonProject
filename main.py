@@ -1,11 +1,23 @@
 import requests
 import json
 
-response = requests.post("https://represtapi.absolutins.ru/ords/rest/oauth/token")
+url_param = "https://represtapi.absolutins.ru/ords/rest/oauth/token"
 header_params = {
-    'grant_type': 'client_credentials'
-    'Authorization': 'OAuth AgAAlkjlkjKAa976ZB-rXh-t-ookfJJcMP979ZU0',
-    'Content-Type': 'application/json'
+    'grant_type': 'client_credentials',
+    'Authorization': 'Basic eE15OFdZOFliemFzTUJtZjJDQ0E4US4uOldRSHdXV0RfQ2VIdGdQTEZsWTcxMWcuLg==',
+    'Accept':'*/*',
+    'Content-Type':'application/x-www-form-urlencoded'
     }
-print("response.status_code:\n{}\n\n".format(response.status_code))
-print("response.text:\n{}\n\n".format(response.text))
+body_params = {
+    'grant_type':'client_credentials'
+    }
+response = requests.post(
+    url_param,
+    headers=header_params
+)
+result = response.json()
+query = result['query']
+data = result['data']
+print(query)
+print('======================')
+print(data)
